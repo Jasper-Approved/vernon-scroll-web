@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scroll Interpretation</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="red-bg">
+  <div class="fog-overlay"></div>
+
+  <div class="scroll-container">
+    {% if step.text %}
+      <h2>{{ step.text }}</h2>
+      {% if step.pause %}
+        <form method="post">
+          <button type="submit">Continue</button>
+        </form>
+      {% else %}
+        <form method="post">
+          <button type="submit">Next</button>
+        </form>
+      {% endif %}
+    {% elif step.question %}
+      <h2>{{ step.question }}</h2>
+      <form method="post">
+        <input type="hidden" name="question" value="{{ step.question }}">
+        <button name="response" value="yes">Yes</button>
+        <button name="response" value="no">No</button>
+      </form>
+    {% else %}
+      <a href="{{ url_for('lineage') }}">Complete Scroll</a>
+    {% endif %}
+  </div>
+
+  <hr>
+  <h4>🧬 Lineage:</h4>
+  <ul>
+    {% for entry in lineage %}
+      <li>{{ entry }}</li>
+    {% endfor %}
+  </ul>
+</body>
+</html>
