@@ -19,7 +19,7 @@ body.red-bg {
   z-index: -1; /* Beneath the scroll */
 }
 
-/* Glyph Ritual Overlay */
+/* Glyph Ritual Overlay Temporairly sealed
 .glyph-overlay {
   position: fixed;
   top: 0; left: 0;
@@ -34,6 +34,7 @@ body.red-bg {
   display: block;
   margin: auto;
 }
+*/
 
 /* 🔇 Ritual Audio — Silent Invocation */
 #ritual-audio {
