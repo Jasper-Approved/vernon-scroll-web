@@ -3,6 +3,11 @@ scroll:
   title: "Vernon Repairs: No Water from Group"
   drop_site:
     name: "diabolical-vault-deck"
+  background_style:
+    image: "/static/backgrounds/no_water_test_glyph.png"
+    size: "contain"
+    position: "center"
+    opacity: "0.6"
   remedy:
     name: "No Water from Group"
     symptoms: []
