@@ -40,12 +40,6 @@ def index():
 # 🧭 Step route
 @app.route('/step', methods=['GET', 'POST'])
 def step():
-    if request.method == 'POST':
-        # Handle form submission, update step, lineage, etc.
-        ...
-    else:
-        # Handle direct GET access — maybe show current step or redirect
-        return redirect(url_for('index'))  # or render a default scroll step
     scroll = load_scroll()
     main_steps = scroll['remedy']['steps']
     branch_steps = session.get('branch_steps')
@@ -113,6 +107,7 @@ def reset():
 # 🚀 Run ritual
 if __name__ == '__main__':
     app.run(debug=True)
+
 
 
 
