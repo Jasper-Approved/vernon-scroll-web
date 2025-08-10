@@ -21,5 +21,12 @@
   {% else %}
     <a href="{{ url_for('complete') }}">Complete Scroll</a>
   {% endif %}
+<hr>
+<h4>Lineage:</h4>
+<ul>
+  {% for entry in lineage %}
+    <li>{{ entry }}</li>
+  {% endfor %}
+</ul>
 </body>
 </html>
