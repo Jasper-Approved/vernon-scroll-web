@@ -4,50 +4,86 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Scroll Interpretation</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    /* Optional inline fallback for background layering */
+    #scroll-wrapper {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    .glyph-overlay img {
+      position: absolute;
+      top: 15%;
+      left: 10%;
+      z-index: 1;
+    }
+    .fog-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .scroll-container {
+      position: relative;
+      z-index: 3;
+    }
+  </style>
 </head>
-<body class="red-bg">
-  <div class="fog-overlay"></div>
-  {% if step.background %}
-   <div class="glyph-overlay">
-    <img src="{{ url_for('static', filename='backgrounds/' + remedy.background) }}"
-         style="width: {{ remedy.background_style.width }};
-                opacity: {{ remedy.background_style.opacity }};
-                position: absolute;
-                top: 15%;
-                left: 10%;
-                z-index: 0;">
-   </div>
-  {% endif %} 
-  <div class="scroll-container">
-    {% if step.text %}
-      <h2 class="ritual-text">{{ step.text }}</h2>
-      {% if step.pause %}
+<body>
+  <!-- 🌫️ Background + Glyph Layering Wrapper -->
+  <div id="scroll-wrapper"
+       style="
+         background-image: url('{{ background_style.image }}');
+         background-size: {{ background_style.size }};
+         background-position: {{ background_style.position }};
+         opacity: {{ background_style.opacity }};
+         background-repeat: no-repeat;
+         background-attachment: fixed;
+       ">
+
+    <!-- 🌫️ Fog Overlay -->
+    <div class="fog-overlay"></div>
+
+    <!-- 🧿 Glyph Overlay (if step.background is defined) -->
+    {% if step.background %}
+    <div class="glyph-overlay">
+      <img src="{{ url_for('static', filename='backgrounds/' + step.background) }}"
+           style="width: {{ remedy.background_style.width }};
+                  opacity: {{ remedy.background_style.opacity }};">
+    </div>
+    {% endif %}
+
+    <!-- 📜 Scroll Content -->
+    <div class="scroll-container">
+      {% if step.text %}
+        <h2 class="ritual-text">{{ step.text }}</h2>
         <form method="post">
-          <button type="submit">Continue</button>
+          <button type="submit">{{ 'Continue' if step.pause else 'Next' }}</button>
+        </form>
+      {% elif step.question %}
+        <h2 class="ritual-text">{{ step.question }}</h2>
+        <form method="post">
+          <input type="hidden" name="question" value="{{ step.question }}">
+          <button name="response" value="yes">Yes</button>
+          <button name="response" value="no">No</button>
         </form>
       {% else %}
-        <form method="post">
-          <button type="submit">Next</button>
-        </form>
+        <a href="{{ url_for('lineage') }}">Complete Scroll</a>
       {% endif %}
-    {% elif step.question %}
-      <h2 class="ritual-text">{{ step.question }}</h2>
-      <form method="post">
-        <input type="hidden" name="question" value="{{ step.question }}">
-        <button name="response" value="yes">Yes</button>
-        <button name="response" value="no">No</button>
-      </form>
-    {% else %}
-      <a href="{{ url_for('lineage') }}">Complete Scroll</a>
-    {% endif %}
-  </div>
+    </div>
 
-  <hr>
-  <h4>🧬 Lineage:</h4>
-  <ul>
-    {% for entry in lineage %}
-      <li>{{ entry }}</li>
-    {% endfor %}
-  </ul>
+    <!-- 🧬 Lineage Trail -->
+    <hr>
+    <h4>🧬 Lineage:</h4>
+    <ul>
+      {% for entry in lineage %}
+        <li>{{ entry }}</li>
+      {% endfor %}
+    </ul>
+  </div>
 </body>
 </html>
+
