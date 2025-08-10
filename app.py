@@ -52,17 +52,31 @@ def step():
         response = request.form.get('response')
         question = request.form.get('question')
 
-        if response and question:
-            lineage.append(f"Q: {question} → {response.capitalize()}")
-            session['lineage'] = lineage
+       if response:
+    current_step = steps[index]
 
-            current_step = steps[index]
-            branch_key = f"if_{response}"
-            if branch_key in current_step:
-                session['branch_steps'] = current_step[branch_key]
-                session['step_index'] = 0
-                session['main_index'] = index + 1
-                return redirect(url_for('step'))
+    # Handle branching response
+    if question:
+        lineage.append(f"Q: {question} → {response.capitalize()}")
+        session['lineage'] = lineage
+
+        branch_key = f"if_{response}"
+        if branch_key in current_step:
+            session['branch_steps'] = current_step[branch_key]
+            session['step_index'] = 0
+            session['main_index'] = index + 1
+            return redirect(url_for('step'))
+
+    # Handle non-branching "next"
+    index += 1
+    session['step_index'] = index
+
+    if branch_steps and index >= len(branch_steps):
+        session['branch_steps'] = None
+        index = session.get('main_index', 0)
+        session['step_index'] = index
+
+    return redirect(url_for('step'))
 
         index += 1
         session['step_index'] = index
