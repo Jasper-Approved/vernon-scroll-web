@@ -4,50 +4,43 @@ body.red-bg {
   color: white;
   font-family: Georgia, serif;
   text-align: center;
-  padding: 1em; /* Mobile-safe padding */
+  padding: 1em;
 }
 
 /* 🌫️ Fog Overlay — Whisper of the Blue Mist */
 .fog-overlay {
   background-image: url('/static/blue_fog_espresso.png');
   background-size: cover;
-  background-position: bottom center; /* Ensures mobile fog sits low */
+  background-position: bottom center;
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
   opacity: 0.4;
-  z-index: -1; /* Beneath the scroll */
-}
-
-.glyph-overlay {
-  background-image: url('/static/backgrounds/{{ remedy.background }}');
-  background-size: contain; /* or cover */
-  background-repeat: no-repeat;
-  background-position: center;
-  opacity: {{ remedy.background_style.opacity }};
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  z-index: 2; /* Above background, below scroll */
   pointer-events: none;
-  z-index: 0;
 }
 
-/* Glyph Ritual Overlay Temporairly sealed
-.glyph-overlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
-  z-index: 0;
-}
-
+/* 🧿 Glyph Overlay — Unsealed Invocation */
 .glyph-overlay img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: auto;
+  position: absolute;
+  top: 15%;
+  left: 10%;
+  width: auto;
+  max-width: 80%;
+  opacity: 0.6; /* Can be overridden by inline style */
+  z-index: 1;
+  pointer-events: none;
 }
-*/
+
+/* 📜 Scroll Wrapper — Ambient Background Layer */
+#scroll-wrapper {
+  position: relative;
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  z-index: 0;
+  overflow: hidden;
+}
 
 /* 🔇 Ritual Audio — Silent Invocation */
 #ritual-audio {
@@ -67,7 +60,7 @@ body {
 /* 📜 Scroll Container — Ritual Vessel */
 .scroll-container {
   position: relative;
-  z-index: 1; /* Above fog */
+  z-index: 3; /* Above fog and glyphs */
   max-width: 600px;
   margin: auto;
   padding: 2em;
@@ -75,7 +68,7 @@ body {
 
 /* 🖼️ Button Styling — Golden Sigils */
 button {
-  background-color: #d4af37; /* Ritual gold */
+  background-color: #d4af37;
   color: white;
   border: none;
   border-radius: 8px;
