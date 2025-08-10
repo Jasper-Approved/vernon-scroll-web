@@ -8,7 +8,7 @@
   <div class="fog-overlay"></div>
   <div class="scroll-container">
     {% if step.text %}
-      <h2>{{ step.text }}</h2>
+      <h2 class="ritual-text">{{ step.text }}</h2>
       {% if step.pause %}
         <form method="post">
           <button type="submit">Continue</button>
@@ -19,7 +19,7 @@
         </form>
       {% endif %}
     {% elif step.question %}
-      <h2>{{ step.question }}</h2>
+      <h2 class="ritual-text">{{ step.question }}</h2>
       <form method="post">
         <input type="hidden" name="question" value="{{ step.question }}">
         <button name="response" value="yes">Yes</button>
