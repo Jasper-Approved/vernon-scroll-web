@@ -1,2 +1,9 @@
-# vernon-scroll-web
-A test file for data purposes on Espresso repair remedies
+# 🧬 Vernon Scroll Web
+
+A Flask-based ritual interface for espresso diagnostics.
+
+## Run Locally
+
+```bash
+pip install flask pyyaml
+python app.py
