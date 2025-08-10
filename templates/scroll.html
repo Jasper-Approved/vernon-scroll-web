@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scroll Step</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="red-bg">
+  <div class="fog-overlay"></div>
+  {% if step.text %}
+    <p>{{ step.text }}</p>
+    <form method="post">
+      <button type="submit" name="response" value="next">Next</button>
+    </form>
+  {% elif step.question %}
+    <p>{{ step.question }}</p>
+    <form method="post">
+      <button type="submit" name="response" value="yes">Yes</button>
+      <button type="submit" name="response" value="no">No</button>
+    </form>
+  {% else %}
+    <a href="{{ url_for('complete') }}">Complete Scroll</a>
+  {% endif %}
+</body>
+</html>
