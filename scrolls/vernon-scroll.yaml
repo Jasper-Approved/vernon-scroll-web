@@ -1,0 +1,31 @@
+scroll:
+  id: "vernon-no-water-test"
+  title: "Vernon Repairs: No Water from Group"
+  drop_site: "diabolical-vault-deck"
+  remedy:
+    name: "No Water from Group"
+    symptoms: []
+    steps:
+      - text: "Remove the diffuser and screen."
+        pause: true
+
+      - question: "Does water flow from the head?"
+        if_yes:
+          - text: "Check the screw and make sure that there are no coffee grounds blocking the holes."
+            pause: true
+        if_no:
+          - question: "Do you hear the solenoid plunger engage when you press the brew button?"
+            if_yes:
+              - text: "Then the group is blocked at the flow-meter or on some models at the metering jet."
+                pause: true
+              - text: "Call your local espresso repair guy for assistance."
+            if_no:
+              - text: "Using a screwdriver or wrench, tap on the solenoid coil to loosen the plunger."
+                pause: true
+    vernonism: ""
+  caption: "No water flows from the group. Vernon repairs with dust."
+  remix_prompt: "What repairs without water? Trace the blockage. Tap the coil. Scroll dry."
+  whisper_log:
+    - trigger: "Dry repair"
+      response: "Caption held. Hydration denied."
+      lineage: "Vernon → Espresso Pulse → Dust Scroll"
