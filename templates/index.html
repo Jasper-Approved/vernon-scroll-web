@@ -16,32 +16,35 @@
   Your browser does not support the audio element.
 </audio>
 <script>
- const audio = document.getElementById('ritual-audio');
-const optionButtons = document.querySelectorAll('button[name="choice"]');
+  const audio = document.getElementById('ritual-audio');
+  const optionButtons = document.querySelectorAll('button[name="choice"]');
 
-// Preload alternate track
-const preloadSilence = new Audio("{{ url_for('static', filename='audio/stutters-in-silence-01.mp3') }}");
-preloadSilence.preload = 'auto';
+  optionButtons.forEach(button => {
+    button.addEventListener('click', event => {
+      event.preventDefault(); // Stop form from submitting immediately
 
-optionButtons.forEach(button => {
-  button.addEventListener('click', event => {
-    event.preventDefault();
+      const choice = event.target.value;
+      let newSrc = '';
 
-    const choice = event.target.value;
-    let newSrc = '';
+      if (choice === 'option1') {
+        newSrc = "{{ url_for('static', filename='audio/golden-haze-01.mp3') }}";
+      } else if (choice === 'option2') {
+        newSrc = "{{ url_for('static', filename='audio/stutters-in-silence-01.mp3') }}";
+      }
 
-    if (choice === 'option1') {
-      newSrc = "{{ url_for('static', filename='audio/golden-haze-01.mp3') }}";
-    } else if (choice === 'option2') {
-      newSrc = "{{ url_for('static', filename='audio/stutters-in-silence-01.mp3') }}";
-    }
+      // Update audio source and play
+      audio.src = newSrc;
+      audio.load();
+      audio.play();
 
-    audio.src = newSrc;
-    audio.load();
-    audio.play();
+      // Delay scroll transition so audio can begin
+      setTimeout(() => {
+        event.target.form.submit();
+      }, 1000); // Adjust delay as needed
+    });
   });
-});
 </script>
+
 <!-- 🧠 Selection Buttons -->
 <form method="POST" action="/step">
   <button name="choice" value="option1">Option 1</button>
