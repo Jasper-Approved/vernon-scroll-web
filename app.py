@@ -40,8 +40,8 @@ def index():
 # 🧭 Step route
 @app.route('/step', methods=['GET', 'POST'])
 def step():
-    scroll = load_scroll()
-    main_steps = scroll['remedy']['steps']
+    scroll_data = load_scroll()
+    main_steps = scroll_data['remedy']['steps']
     branch_steps = session.get('branch_steps')
     lineage = session.get('lineage', [])
     index = session.get('step_index', 0)
@@ -64,25 +64,38 @@ def step():
                 session['main_index'] = index + 1
                 return redirect(url_for('step'))
 
-        # 🧿 Advance even if it's just a pause step
         index += 1
         session['step_index'] = index
 
-        # 🧹 Handle end of branch
         if branch_steps and index >= len(branch_steps):
             session['branch_steps'] = None
             session['step_index'] = session.get('main_index', 0) + 1
 
         return redirect(url_for('step'))
 
-    # 🧭 Preserve main index if not branching
     if not branch_steps:
         session['main_index'] = index
 
-    # 📜 Render current step or complete
     if index < len(steps):
         current_step = steps[index]
-        return render_template('glyph.html', step=current_step, index=index, lineage=lineage)
+
+        # 🧿 Extract remedy and background_style from scroll
+        remedy = scroll_data.get('remedy', {})
+        background_style = scroll_data.get('background_style', {
+            'image': '/static/backgrounds/default.png',
+            'size': 'cover',
+            'position': 'center',
+            'opacity': '1'
+        })
+
+        return render_template(
+            'glyph.html',
+            step=current_step,
+            index=index,
+            lineage=lineage,
+            remedy=remedy,
+            background_style=background_style
+        )
     else:
         return redirect(url_for('complete'))
 
