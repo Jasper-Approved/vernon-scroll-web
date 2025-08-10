@@ -1,91 +1,82 @@
+/* 🔴 Ritual Backdrop — Red Velvet Invocation */
 body.red-bg {
-  background-color: #3a0000;
+  background-color: #3a0000; /* Deep espresso red */
   color: white;
   font-family: Georgia, serif;
   text-align: center;
-  padding: 50px;
+  padding: 1em; /* Mobile-safe padding */
 }
 
+/* 🌫️ Fog Overlay — Whisper of the Blue Mist */
 .fog-overlay {
   background-image: url('/static/blue_fog_espresso.png');
   background-size: cover;
+  background-position: bottom center; /* Ensures mobile fog sits low */
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
   opacity: 0.4;
-  z-index: -1;
+  z-index: -1; /* Beneath the scroll */
 }
 
+/* 🔇 Ritual Audio — Silent Invocation */
 #ritual-audio {
   opacity: 0;
   pointer-events: none;
 }
 
-/* 🌐 Responsive Base */
+/* 🌐 Base Typography — Scroll Foundation */
 body {
   font-size: 1.2em;
-  padding: 1em;
   margin: 0;
   line-height: 1.6;
+  font-family: Georgia, serif;
+  text-align: center;
 }
 
-/* 📱 Mobile Scaling */
-@media (max-width: 600px) {
-  h1, h2, h3, h4 {
-    font-size: 2em;
-  }
-
-  button {
-    font-size: 1.5em;
-    padding: 1em 2em;
-    margin: 1em 0;
-    width: 90%;
-    max-width: 400px;
-    display: block;
-  }
-
-  .scroll-container {
-    padding: 1em;
-  }
-
-  input[type="hidden"] {
-    display: none;
-  }
+/* 📜 Scroll Container — Ritual Vessel */
+.scroll-container {
+  position: relative;
+  z-index: 1; /* Above fog */
+  max-width: 600px;
+  margin: auto;
+  padding: 2em;
 }
 
-/* 🖼️ Button Styling */
+/* 🖼️ Button Styling — Golden Sigils */
 button {
-  background-color: #d4af37;
+  background-color: #d4af37; /* Ritual gold */
   color: white;
   border: none;
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
 }
 
 button:hover {
   background-color: #bfa12f;
 }
 
-/* 🧬 Ritual Text Styling */
+/* 🧬 Ritual Text — Invocation Glyphs */
 .ritual-text {
   font-size: 2.5em;
   text-align: center;
   margin-top: 1em;
   margin-bottom: 0.5em;
-  font-family: 'Georgia', serif;
+  font-family: Georgia, serif;
   color: #d4af37;
 }
 
-/* 📜 Lineage List Styling */
+/* 📜 Lineage List — Modular Memory */
 ul {
   font-size: 1.2em;
   padding-left: 1.5em;
   margin-bottom: 2em;
 }
 
-/* 🔁 Restart Link Styling */
+/* 🔁 Restart Link — Portal Anchor */
 a {
   display: inline-block;
   font-size: 1.4em;
@@ -102,8 +93,12 @@ a:hover {
   background-color: #bfa12f;
 }
 
-/* 📱 Responsive Ritual Scaling */
+/* 📱 Responsive Ritual Scaling — Mobile Invocation */
 @media (max-width: 600px) {
+  h1, h2, h3, h4 {
+    font-size: 2em;
+  }
+
   .ritual-text {
     font-size: 2em;
   }
@@ -126,5 +121,14 @@ a:hover {
     display: block;
     margin: 1em auto;
   }
+
+  .scroll-container {
+    padding: 1em;
+  }
+
+  input[type="hidden"] {
+    display: none;
+  }
 }
+
 
