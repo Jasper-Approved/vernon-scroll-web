@@ -19,6 +19,19 @@ body.red-bg {
   z-index: -1; /* Beneath the scroll */
 }
 
+.glyph-overlay {
+  background-image: url('/static/backgrounds/{{ remedy.background }}');
+  background-size: contain; /* or cover */
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: {{ remedy.background_style.opacity }};
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
 /* Glyph Ritual Overlay Temporairly sealed
 .glyph-overlay {
   position: fixed;
