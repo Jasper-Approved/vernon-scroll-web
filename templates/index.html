@@ -8,11 +8,10 @@
   <div class="fog-overlay"></div>
   <h1>{{ title }}</h1>
   <p>{{ caption }}</p>
-  <a href="{{ url_for('step') }}">Begin Scroll</a>
 
-  <!-- 🎵 Ritual Audio Element -->
+  <!-- 🎵 Ritual Audio Element (no controls, plays on button click) -->
   <audio id="ritual-audio" preload="auto">
-    <source src="" type="audio/mpeg">
+    <source id="audio-source" src="" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 
@@ -31,6 +30,7 @@
   <!-- 🧪 Ritual Script -->
   <script>
     const audio = document.getElementById('ritual-audio');
+    const source = document.getElementById('audio-source');
     const optionButtons = document.querySelectorAll('button[name="choice"]');
 
     optionButtons.forEach(button => {
@@ -38,13 +38,18 @@
         event.preventDefault();
 
         const newSrc = event.target.dataset.audio;
-        audio.src = newSrc;
+        source.src = newSrc;
         audio.load();
-        audio.play();
 
-        setTimeout(() => {
-          event.target.form.submit();
-        }, 1000); // Delay to let audio begin
+        // Try to play and wait for it to start
+        audio.play().then(() => {
+          setTimeout(() => {
+            event.target.form.submit();
+          }, 1000); // Delay to let audio begin
+        }).catch(error => {
+          console.error("Audio playback failed:", error);
+          event.target.form.submit(); // Fallback if audio fails
+        });
       });
     });
   </script>
