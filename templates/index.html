@@ -29,30 +29,31 @@
 
   <!-- 🧪 Ritual Script -->
   <script>
-    const audio = document.getElementById('ritual-audio');
-    const source = document.getElementById('audio-source');
-    const optionButtons = document.querySelectorAll('button[name="choice"]');
+  const audio = document.getElementById('ritual-audio');
+  const source = document.getElementById('audio-source');
+  const optionButtons = document.querySelectorAll('button[name="choice"]');
 
-    optionButtons.forEach(button => {
-      button.addEventListener('click', event => {
-        event.preventDefault();
+  optionButtons.forEach(button => {
+    button.addEventListener('click', event => {
+      event.preventDefault();
 
-        const newSrc = event.target.dataset.audio;
-        source.src = newSrc;
-        audio.load();
+      const newSrc = event.target.dataset.audio;
+      source.src = newSrc;
+      audio.load();
 
-        // Try to play and wait for it to start
-        audio.play().then(() => {
-          setTimeout(() => {
-            event.target.form.submit();
-          }, 1000); // Delay to let audio begin
-        }).catch(error => {
-          console.error("Audio playback failed:", error);
-          event.target.form.submit(); // Fallback if audio fails
-        });
+      audio.play().then(() => {
+        // Let the audio play for 3 seconds before submitting
+        setTimeout(() => {
+          event.target.form.submit();
+        }, 3000);
+      }).catch(error => {
+        console.error("Audio playback failed:", error);
+        event.target.form.submit(); // Fallback
       });
     });
-  </script>
+  });
+</script>
+
 </body>
 </html>
 
