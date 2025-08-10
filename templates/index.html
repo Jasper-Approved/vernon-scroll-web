@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="red-bg">
+  <div class="fog-overlay"></div>
+  <h1>{{ title }}</h1>
+  <p>{{ caption }}</p>
+  <a href="{{ url_for('scroll', step_index=0) }}">Begin Scroll</a>
+</body>
+</html>
