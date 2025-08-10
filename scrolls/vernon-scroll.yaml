@@ -14,7 +14,6 @@ scroll:
     steps:
       - text: "Remove the diffuser and screen."
         pause: true
-
       - question: "Does water flow from the head?"
         if_yes:
           - text: "Check the screw and make sure that there are no coffee grounds blocking the holes."
