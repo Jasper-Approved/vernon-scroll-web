@@ -35,7 +35,7 @@ def index():
         print(f"Starting scroll at index {session['step_index']}")
         print("Lineage:", session['lineage'])
 
-    return render_template('index.html', scroll=scroll)
+    return render_template('index.html', title=scroll_data['title'], caption=scroll_data['caption'])
 
 # 🧭 Step route
 @app.route('/step', methods=['GET', 'POST'])
