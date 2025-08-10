@@ -48,31 +48,32 @@ def step():
 
     steps = branch_steps if branch_steps else main_steps
 
-   if request.method == 'POST':
-    response = request.form.get('response')
-    question = request.form.get('question')
+    if request.method == 'POST':
+        response = request.form.get('response')
+        question = request.form.get('question')
 
-    if response and question:
-        lineage.append(f"Q: {question} → {response.capitalize()}")
-        session['lineage'] = lineage
+        if response and question:
+            lineage.append(f"Q: {question} → {response.capitalize()}")
+            session['lineage'] = lineage
 
-        current_step = steps[index]
-        branch_key = f"if_{response}"
-        if branch_key in current_step:
-            session['branch_steps'] = current_step[branch_key]
-            session['step_index'] = 0
-            return redirect(url_for('step'))
+            current_step = steps[index]
+            branch_key = f"if_{response}"
+            if branch_key in current_step:
+                session['branch_steps'] = current_step[branch_key]
+                session['step_index'] = 0
+                session['main_index'] = index + 1
+                return redirect(url_for('step'))
 
-    # 🧿 Advance even if it's just a pause step
-    index += 1
-    session['step_index'] = index
+        # 🧿 Advance even if it's just a pause step
+        index += 1
+        session['step_index'] = index
 
-    # 🧹 Handle end of branch
-    if branch_steps and index >= len(branch_steps):
-        session['branch_steps'] = None
-        session['step_index'] = session.get('main_index', 0) + 1
+        # 🧹 Handle end of branch
+        if branch_steps and index >= len(branch_steps):
+            session['branch_steps'] = None
+            session['step_index'] = session.get('main_index', 0) + 1
 
-    return redirect(url_for('step'))
+        return redirect(url_for('step'))
 
     # 🧭 Preserve main index if not branching
     if not branch_steps:
@@ -106,5 +107,6 @@ def reset():
 # 🚀 Run ritual
 if __name__ == '__main__':
     app.run(debug=True)
+
 
 
