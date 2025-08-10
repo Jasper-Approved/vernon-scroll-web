@@ -1,23 +1,43 @@
 # app.py
 from flask import Flask, render_template, request, redirect, url_for, session
 import yaml
+import os
 
-app = Flask(__name__)
-app.secret_key = 'your-secret-key'  # Required for session handling
+app = Flask(__name__, template_folder='templates')
+app.secret_key = 'vernon-scroll-secret'  # 🕯️ Required for session handling
 
-def load_scroll():
-    with open('scrolls/vernon-scroll.yaml', 'r') as f:
-        return yaml.safe_load(f)['scroll']
+# 📜 Load scroll from YAML
+def load_scroll(path='scrolls/vernon-scroll.yaml'):
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"🕯️ Scroll not found at: {path}")
+    with open(path, 'r') as f:
+        data = yaml.safe_load(f)
+        if 'scroll' not in data:
+            raise KeyError("📜 Jiinga’s scroll lacks a 'scroll' key. Check the YAML structure.")
+        return data['scroll']
 
+# 🏠 Home route
 @app.route('/')
 def index():
-    scroll = load_scroll()
+    try:
+        scroll = load_scroll()
+    except Exception as e:
+        return f"⚠️ Scroll loading error: {e}", 500
+
+    session['lineage'] = []
+    session['step_index'] = 0
+    session['branch_steps'] = None
+    session['main_index'] = 0
+
     debug = request.args.get('debug')
     if debug:
-        index = session.get('step_index', 0)
-        print(f"Starting scroll at index {index}")
-    return render_template('index.html', title=scroll['title'], caption=scroll['caption'])
+        print("🧪 Debug mode active")
+        print(f"Starting scroll at index {session['step_index']}")
+        print("Lineage:", session['lineage'])
 
+    return render_template('index.html', scroll=scroll)
+
+# 🧭 Step route
 @app.route('/step', methods=['GET', 'POST'])
 def step():
     scroll = load_scroll()
@@ -54,17 +74,35 @@ def step():
 
         return redirect(url_for('step'))
 
+    if not branch_steps:
+        session['main_index'] = index
+
     if index < len(steps):
         current_step = steps[index]
         return render_template('step.html', step=current_step, index=index, lineage=lineage)
     else:
         return redirect(url_for('complete'))
 
+# 🏁 Completion route
 @app.route('/complete')
 def complete():
     lineage = session.get('lineage', [])
     return render_template('complete.html', lineage=lineage)
 
+# 🧬 Lineage route
+@app.route('/lineage')
+def lineage_view():
+    lineage = session.get('lineage', [])
+    return render_template('lineage.html', lineage=lineage)
+
+# 🔄 Reset route
+@app.route('/reset')
+def reset():
+    session.clear()
+    return redirect(url_for('index'))
+
+# 🚀 Run ritual
 if __name__ == '__main__':
     app.run(debug=True)
+
 
