@@ -15,6 +15,10 @@
   <source src="{{ url_for('static', filename='audio/golden-haze-01.mp3') }}" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
+<audio id="ritual-audio" controls>
+  <source src="{{ url_for('static', filename='audio/stutters-in-silence-01.mp3') }}" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
 <script>
   const audio = document.getElementById('ritual-audio');
   const optionButtons = document.querySelectorAll('button[name="choice"]');
