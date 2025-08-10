@@ -7,6 +7,17 @@
 </head>
 <body class="red-bg">
   <div class="fog-overlay"></div>
+  {% if remedy.background %}
+   <div class="glyph-overlay">
+    <img src="{{ url_for('static', filename='backgrounds/' + remedy.background) }}"
+         style="width: {{ remedy.background_style.width }};
+                opacity: {{ remedy.background_style.opacity }};
+                position: absolute;
+                top: 15%;
+                left: 10%;
+                z-index: 0;">
+   </div>
+  {% endif %}
   <div class="scroll-container">
     {% if step.text %}
       <h2 class="ritual-text">{{ step.text }}</h2>
