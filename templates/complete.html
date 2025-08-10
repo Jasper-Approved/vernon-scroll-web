@@ -1,12 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Scroll Complete</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <title>Scroll Complete</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #fdf6e3;
+            color: #333;
+            text-align: center;
+            padding: 2em;
+        }
+        .lineage {
+            margin-top: 2em;
+            font-size: 1.1em;
+        }
+        .reset-link {
+            display: inline-block;
+            margin-top: 2em;
+            padding: 0.5em 1em;
+            background-color: #d4af37;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .reset-link:hover {
+            background-color: #bfa12f;
+        }
+        audio {
+            margin-top: 2em;
+        }
+    </style>
 </head>
-<body class="red-bg">
-  <div class="fog-overlay"></div>
-  <h2>🧬 Scroll complete.</h2>
+<body>
+    <h1>🪶 Scroll Complete</h1>
+    <p>You’ve walked the ritual. Vernon nods in dust.</p>
+
+    <div class="lineage">
+        <h2>📜 Your Lineage</h2>
+        <ul>
+            {% for entry in lineage %}
+                <li>{{ entry }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- 🔄 Reset Scroll -->
+    <a href="{{ url_for('reset') }}" class="reset-link">Reset Scroll</a>
+
+    <!-- 🎵 Golden Haze Audio -->
+    <audio controls autoplay>
+        <source src="{{ url_for('static', filename='audio/golden-haze-01.mp3') }}" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
   <footer>This is only test data.</footer>
 </body>
 </html>
+
