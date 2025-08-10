@@ -52,45 +52,37 @@ def step():
         response = request.form.get('response')
         question = request.form.get('question')
 
-       if response:
-    current_step = steps[index]
+        if response:
+            current_step = steps[index]
 
-    # Handle branching response
-    if question:
-        lineage.append(f"Q: {question} → {response.capitalize()}")
-        session['lineage'] = lineage
+            # 🧭 Handle branching response
+            if question:
+                lineage.append(f"Q: {question} → {response.capitalize()}")
+                session['lineage'] = lineage
 
-        branch_key = f"if_{response}"
-        if branch_key in current_step:
-            session['branch_steps'] = current_step[branch_key]
-            session['step_index'] = 0
-            session['main_index'] = index + 1
-            return redirect(url_for('step'))
+                branch_key = f"if_{response}"
+                if branch_key in current_step:
+                    session['branch_steps'] = current_step[branch_key]
+                    session['step_index'] = 0
+                    session['main_index'] = index + 1
+                    return redirect(url_for('step'))
 
-    # Handle non-branching "next"
-    index += 1
-    session['step_index'] = index
-
-    if branch_steps and index >= len(branch_steps):
-        session['branch_steps'] = None
-        index = session.get('main_index', 0)
-        session['step_index'] = index
-
-    return redirect(url_for('step'))
-
-        index += 1
-        session['step_index'] = index
-
-        if branch_steps and index >= len(branch_steps):
-            session['branch_steps'] = None
-            index = session.get('main_index', 0)
+            # ➡️ Handle non-branching "next"
+            index += 1
             session['step_index'] = index
 
-        return redirect(url_for('step'))
+            if branch_steps and index >= len(branch_steps):
+                session['branch_steps'] = None
+                index = session.get('main_index', 0)
+                session['step_index'] = index
 
+            return redirect(url_for('step'))
+
+    # 🧭 Preserve main index if not branching
     if not branch_steps:
         session['main_index'] = index
 
+    # 📜 Render current step or complete
     if index < len(steps):
         current_step = steps[index]
         return render_template('scroll.html', step=current_step, index=index, lineage=lineage)
