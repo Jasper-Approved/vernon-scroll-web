@@ -15,7 +15,30 @@
   <source src="{{ url_for('static', filename='audio/golden-haze-01.mp3') }}" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
+<script>
+  const audio = document.getElementById('ritual-audio');
+  const optionButtons = document.querySelectorAll('button[name="choice"]');
 
+  optionButtons.forEach(button => {
+    button.addEventListener('click', event => {
+      event.preventDefault(); // Prevent form submission
+
+      const choice = event.target.value;
+      let newSrc = '';
+
+      if (choice === 'option1') {
+        newSrc = "{{ url_for('static', filename='audio/golden-haze-01.mp3') }}";
+      } else if (choice === 'option2') {
+        newSrc = "{{ url_for('static', filename='audio/stutters-in-silence-01.mp3') }}";
+      }
+
+      // Update audio source and play
+      audio.src = newSrc;
+      audio.load();
+      audio.play();
+    });
+  });
+</script>
 <!-- 🧠 Selection Buttons -->
 <form method="POST" action="/step">
   <button name="choice" value="option1">Option 1</button>
