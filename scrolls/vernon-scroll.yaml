@@ -5,10 +5,10 @@ scroll:
     name: "diabolical-vault-deck"
 
   background_style:  # ✅ Ambient layer now scroll-wide
-    image: "/static/backgrounds/no_water_test_glyph.png"
-    size: "contain"
-    position: "center"
-    opacity: "0.2"
+    image: "/static/backgrounds/blue_fog_espresso.png"
+  size: "cover"
+  position: "center"
+  opacity: "1"
 
   remedy:
     name: "No Water from Group"
