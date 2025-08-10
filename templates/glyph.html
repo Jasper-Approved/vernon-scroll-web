@@ -49,11 +49,10 @@
 
     <!-- 🧿 Glyph Overlay (if step.background is defined) -->
     {% if step.background %}
-    <div class="glyph-overlay" style="opacity: 0.02">
-      <img src="{{ url_for('static', filename='backgrounds/' + step.background) }}"
-           style="width: {{ remedy.background_style.width }};
-                  opacity: {{ remedy.background_style.opacity }};">
-    </div>
+     <div class="glyph-overlay">
+      <img src="{{ url_for('static', filename='backgrounds/no_water_test_glyph.png') }}"
+       style="opacity: 0.2; mix-blend-mode: multiply;">
+     </div>
     {% endif %}
 
     <!-- 📜 Scroll Content -->
