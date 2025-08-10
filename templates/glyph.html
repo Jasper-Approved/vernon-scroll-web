@@ -3,22 +3,9 @@
 <head>
   <title>Scroll Interpretation</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <audio id="ritual-audio" controls autoplay loop>
-  <source src="{{ url_for('static', filename='audio/golden-haze-01.mp3') }}" type="audio/mpeg">
-</audio>
-  
-<script>
-  const audio = document.getElementById('ritual-audio');
-  if (!sessionStorage.getItem('audioPlayed')) {
-    audio.play();
-    sessionStorage.setItem('audioPlayed', 'true');
-  }
-</script>
-
 </head>
 <body class="red-bg">
   <div class="fog-overlay"></div>
-
   <div class="scroll-container">
     {% if step.text %}
       <h2>{{ step.text }}</h2>
@@ -50,5 +37,15 @@
       <li>{{ entry }}</li>
     {% endfor %}
   </ul>
+ <audio id="ritual-audio" controls autoplay loop>
+  <source src="{{ url_for('static', filename='audio/golden-haze-01.mp3') }}" type="audio/mpeg">
+ </audio>
+ <script>
+  const audio = document.getElementById('ritual-audio');
+  if (!sessionStorage.getItem('audioPlayed')) {
+    audio.play();
+    sessionStorage.setItem('audioPlayed', 'true');
+  }
+ </script>
 </body>
 </html>
