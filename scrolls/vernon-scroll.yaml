@@ -3,17 +3,13 @@ scroll:
   title: "Vernon Repairs: No Water from Group"
   drop_site:
     name: "diabolical-vault-deck"
-  background_style:
-    image: "/static/backgrounds/no_water_test_glyph.png"
-    size: "contain"
-    position: "center"
-    opacity: "0.6"
   remedy:
     name: "No Water from Group"
     symptoms: []
     steps:
       - text: "Remove the diffuser and screen."
         pause: true
+      
       - question: "Does water flow from the head?"
         if_yes:
           - text: "Check the screw and make sure that there are no coffee grounds blocking the holes."
