@@ -12,6 +12,10 @@ def load_scroll():
 @app.route('/')
 def index():
     scroll = load_scroll()
+    debug = request.args.get('debug')
+    if debug:
+        index = session.get('step_index', 0)
+        print(f"Starting scroll at index {index}")
     return render_template('index.html', title=scroll['title'], caption=scroll['caption'])
 
 @app.route('/step', methods=['GET', 'POST'])
