@@ -85,7 +85,7 @@ def step():
     # 📜 Render current step or complete
     if index < len(steps):
         current_step = steps[index]
-        return render_template('scroll.html', step=current_step, index=index, lineage=lineage)
+        return render_template('step.html', step=current_step, index=index, lineage=lineage)
     else:
         return redirect(url_for('complete'))
 
