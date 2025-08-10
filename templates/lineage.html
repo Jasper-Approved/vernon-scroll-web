@@ -1,0 +1,7 @@
+<h1>🧬 Lineage Log</h1>
+<ul>
+  {% for entry in lineage %}
+    <li>{{ entry }}</li>
+  {% endfor %}
+</ul>
+<a href="{{ url_for('index') }}">Restart Scroll</a>
