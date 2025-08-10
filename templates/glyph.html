@@ -43,8 +43,12 @@
  <script>
   const audio = document.getElementById('ritual-audio');
   if (!sessionStorage.getItem('audioPlayed')) {
-    audio.play();
-    sessionStorage.setItem('audioPlayed', 'true');
+   audio.muted = false;
+   audio.play();
+   sessionStorage.setItem('audioPlayed', 'true');
+   setTimeout(() => {
+     audio.style.opacity = 0; // fade out after 3s
+    }, 3000);
   }
  </script>
 </body>
