@@ -1,0 +1,20 @@
+{% if step.text %}
+  <h2>{{ step.text }}</h2>
+  {% if step.pause %}
+    <form method="post">
+      <button type="submit">Continue</button>
+    </form>
+  {% else %}
+    <form method="post">
+      <button type="submit">Next</button>
+    </form>
+  {% endif %}
+{% elif step.question %}
+  <h2>{{ step.question }}</h2>
+  <form method="post">
+    <input type="hidden" name="question" value="{{ step.question }}">
+    <button name="response" value="yes">Yes</button>
+    <button name="response" value="no">No</button>
+    <!-- Optional: Add branching logic here -->
+  </form>
+{% endif %}
