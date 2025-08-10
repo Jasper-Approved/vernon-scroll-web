@@ -8,48 +8,45 @@
   <div class="fog-overlay"></div>
   <h1>{{ title }}</h1>
   <p>{{ caption }}</p>
-  <a href="{{ url_for('step') }}">Begin Scroll</a>
-  
-  <!-- 🎵 Audio Element with Manual Control -->
-<audio id="ritual-audio" controls preload="auto">
-  <source src="{{ url_for('static', filename='audio/golden-haze-01.mp3') }}" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-<script>
-  const audio = document.getElementById('ritual-audio');
-  const optionButtons = document.querySelectorAll('button[name="choice"]');
 
-  optionButtons.forEach(button => {
-    button.addEventListener('click', event => {
-      event.preventDefault(); // Stop form from submitting immediately
+  <!-- 🎵 Ritual Audio Element -->
+  <audio id="ritual-audio" preload="auto">
+    <source src="" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
-      const choice = event.target.value;
-      let newSrc = '';
+  <!-- 🧠 Selection Buttons with Audio URLs -->
+  <form method="POST" action="/step">
+    <button name="choice" value="option1"
+            data-audio="{{ url_for('static', filename='audio/golden-haze-01.mp3') }}">
+      Option 1
+    </button>
+    <button name="choice" value="option2"
+            data-audio="{{ url_for('static', filename='audio/stutters-in-silence-01.mp3') }}">
+      Option 2
+    </button>
+  </form>
 
-      if (choice === 'option1') {
-        newSrc = "{{ url_for('static', filename='audio/golden-haze-01.mp3') }}";
-      } else if (choice === 'option2') {
-        newSrc = "{{ url_for('static', filename='audio/stutters-in-silence-01.mp3') }}";
-      }
+  <!-- 🧪 Ritual Script -->
+  <script>
+    const audio = document.getElementById('ritual-audio');
+    const optionButtons = document.querySelectorAll('button[name="choice"]');
 
-      // Update audio source and play
-      audio.src = newSrc;
-      audio.load();
-      audio.play();
+    optionButtons.forEach(button => {
+      button.addEventListener('click', event => {
+        event.preventDefault();
 
-      // Delay scroll transition so audio can begin
-      setTimeout(() => {
-        event.target.form.submit();
-      }, 1000); // Adjust delay as needed
+        const newSrc = event.target.dataset.audio;
+        audio.src = newSrc;
+        audio.load();
+        audio.play();
+
+        setTimeout(() => {
+          event.target.form.submit();
+        }, 1000); // Delay to let audio begin
+      });
     });
-  });
-</script>
-
-<!-- 🧠 Selection Buttons -->
-<form method="POST" action="/step">
-  <button name="choice" value="option1">Option 1</button>
-  <button name="choice" value="option2">Option 2</button>
-</form>
-
+  </script>
 </body>
 </html>
+
