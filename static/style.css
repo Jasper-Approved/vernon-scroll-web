@@ -67,3 +67,8 @@ button {
 button:hover {
   background-color: #bfa12f;
 }
+
+.ritual-text {
+  font-size: 2em;
+  text-align: center;
+}
