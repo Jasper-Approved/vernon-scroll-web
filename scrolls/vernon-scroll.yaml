@@ -5,6 +5,10 @@ scroll:
   remedy:
     name: "No Water from Group"
     symptoms: []
+    background: "no_water_test_glyph.png"
+    background_style:
+    width: "80%"
+    opacity: "0.6"
     steps:
       - text: "Remove the diffuser and screen."
         pause: true
