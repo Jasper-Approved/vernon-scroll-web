@@ -1,14 +1,16 @@
 scroll:
   id: "vernon-no-water-test"
   title: "Vernon Repairs: No Water from Group"
-  drop_site: "diabolical-vault-deck"
+  drop_site:
+    name: "diabolical-vault-deck"
+  background_style:
+    image: "/static/backgrounds/no_water_test_glyph.png"
+    size: "contain"
+    position: "center"
+    opacity: "0.6"
   remedy:
     name: "No Water from Group"
     symptoms: []
-    background: "no_water_test_glyph.png"
-    background_style:
-    width: "80%"
-    opacity: "0.6"
     steps:
       - text: "Remove the diffuser and screen."
         pause: true
