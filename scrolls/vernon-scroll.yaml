@@ -31,6 +31,9 @@ scroll:
             if_no:
               - text: "Using a screwdriver or wrench, tap on the solenoid coil to loosen the plunger."
                 pause: true
+          - text: "🪶 Scroll complete. Vernon nods in dust."
+             pause: true
+     
 
   vernonism: ""
   caption: "No water flows from the group. Vernon repairs with dust."
