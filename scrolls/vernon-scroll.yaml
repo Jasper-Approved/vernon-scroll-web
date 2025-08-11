@@ -28,11 +28,11 @@ scroll:
               - text: "Then the group is blocked at the flow-meter or on some models at the metering jet."
                 pause: true
               - text: "Call your local espresso repair guy for assistance."
+              - text: "🪶 Scroll complete. Vernon nods in dust."
+                pause: true
             if_no:
               - text: "Using a screwdriver or wrench, tap on the solenoid coil to loosen the plunger."
                 pause: true
-          - text: "🪶 Scroll complete. Vernon nods in dust."
-            pause: true
 
   vernonism: ""
   caption: "No water flows from the group. Vernon repairs with dust."
