@@ -5,18 +5,9 @@ scroll:
     name: "diabolical-vault-deck"
 
   background_style:  # ✅ Ambient layer now scroll-wide
-    image: "/static/backgrounds/blue_fog_espresso.png"
+    image: "/static/backgrounds/no-water-glyph.png"
   size: "cover"
   position: "center"
-  opacity: "1"
-  
-  # Added glyph layer to scroll
-  glyph: "no-water-glyph.png"
-  top: "0"
-  left: "0"
-  width: "100vw"
-  height: "100vh"
-  object_fit: "cover"
   opacity: "1"
   
   remedy:
