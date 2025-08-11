@@ -4,82 +4,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Scroll Interpretation</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <style>
-    /* 🌫️ Background + Overlay Layering */
-    #scroll-wrapper {
-      position: relative;
-      min-height: 100vh;
-      overflow: hidden;
-    }
-
-    .fog-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    .scroll-container {
-      position: relative;
-      z-index: 3;
-    }
-  </style>
 </head>
-<body>
-  <!-- 🌫️ Background Wrapper -->
-  <div id="scroll-wrapper"
-       style="
-         background-image: url('{{ background_style.image }}');
-         background-size: {{ background_style.size }};
-         background-position: {{ background_style.position }};
-         opacity: {{ background_style.opacity }};
-         background-repeat: no-repeat;
-         background-attachment: fixed;
-       ">
+<body class="red-bg">
+
+  <!-- 🌌 Layer Container — Background + Glyph + Fog -->
+  <div id="layer-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; overflow: hidden;">
+    
+    <!-- 🖼️ Background Image -->
+    <img src="{{ background_style.image }}"
+         style="
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           object-fit: {{ background_style.object_fit | default('cover') }};
+           opacity: {{ background_style.opacity | default('1') }};
+           z-index: 0;
+         ">
+
+    <!-- 🧿 Glyph Overlay -->
+    {% if remedy.glyph %}
+    <img src="{{ url_for('static', filename='backgrounds/' + remedy.glyph) }}"
+         style="
+           position: absolute;
+           top: {{ remedy.glyph_style.top | default('0') }};
+           left: {{ remedy.glyph_style.left | default('0') }};
+           width: {{ remedy.glyph_style.width | default('100vw') }};
+           height: {{ remedy.glyph_style.height | default('100vh') }};
+           object-fit: {{ remedy.glyph_style.object_fit | default('cover') }};
+           opacity: {{ remedy.glyph_style.opacity | default('0.2') }};
+           mix-blend-mode: {{ remedy.glyph_style.blend_mode | default('multiply') }};
+           z-index: 1;
+           pointer-events: none;
+         ">
+    {% endif %}
 
     <!-- 🌫️ Fog Overlay -->
     <div class="fog-overlay"></div>
+  </div>
 
-    <!-- 🧿 Modular Glyph Overlay -->
-    {% if remedy.glyph %}
-    <div class="glyph-overlay">
-      <img src="{{ url_for('static', filename='backgrounds/' + remedy.glyph) }}"
-           style="
-             position: absolute;
-             top: {{ remedy.glyph_style.top | default('0') }};
-             left: {{ remedy.glyph_style.left | default('0') }};
-             width: {{ remedy.glyph_style.width | default('100vw') }};
-             height: {{ remedy.glyph_style.height | default('100vh') }};
-             object-fit: {{ remedy.glyph_style.object_fit | default('cover') }};
-             z-index: 1;
-             opacity: {{ remedy.glyph_style.opacity | default('0.2') }};
-             mix-blend-mode: {{ remedy.glyph_style.blend_mode | default('multiply') }};
-             pointer-events: none;
-           ">
-    </div>
+  <!-- 📜 Scroll Content -->
+  <div class="scroll-container">
+    {% if step.text %}
+      <h2 class="ritual-text">{{ step.text }}</h2>
+      <form method="post">
+        <button type="submit">{{ 'Continue' if step.pause else 'Next' }}</button>
+      </form>
+    {% elif step.question %}
+      <h2 class="ritual-text">{{ step.question }}</h2>
+      <form method="post">
+        <input type="hidden" name="question" value="{{ step.question }}">
+        <button name="response" value="yes">Yes</button>
+        <button name="response" value="no">No</button>
+      </form>
+    {% else %}
+      <a href="{{ url_for('lineage') }}">Complete Scroll</a>
     {% endif %}
-
-    <!-- 📜 Scroll Content -->
-    <div class="scroll-container">
-      {% if step.text %}
-        <h2 class="ritual-text">{{ step.text }}</h2>
-        <form method="post">
-          <button type="submit">{{ 'Continue' if step.pause else 'Next' }}</button>
-        </form>
-      {% elif step.question %}
-        <h2 class="ritual-text">{{ step.question }}</h2>
-        <form method="post">
-          <input type="hidden" name="question" value="{{ step.question }}">
-          <button name="response" value="yes">Yes</button>
-          <button name="response" value="no">No</button>
-        </form>
-      {% else %}
-        <a href="{{ url_for('lineage') }}">Complete Scroll</a>
-      {% endif %}
-    </div>
 
     <!-- 🧬 Lineage Trail -->
     <hr>
@@ -90,7 +71,9 @@
       {% endfor %}
     </ul>
   </div>
+
 </body>
 </html>
+
 
 
