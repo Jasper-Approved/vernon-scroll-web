@@ -22,7 +22,7 @@ body.red-bg {
 
 /* 🧿 Glyph Overlay — Unsealed Invocation */
 .glyph-overlay img {
-  opacity: 1;
+  opacity: 0.5;
   mix-blend-mode: multiply;
   position: absolute;
   top: 0;
