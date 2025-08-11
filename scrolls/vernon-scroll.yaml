@@ -8,7 +8,7 @@ scroll:
     image: "/static/backgrounds/no-water-glyph.png"
   size: "cover"
   position: "center"
-  opacity: "1"
+  opacity: "0.8"
   
   remedy:
     name: "No Water from Group"
