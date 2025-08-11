@@ -6,9 +6,9 @@ scroll:
 
   background_style:  # ✅ Ambient layer now scroll-wide
     image: "/static/backgrounds/no-water-glyph.png"
-  size: "cover"
-  position: "center"
-  opacity: "0.6"
+    size: "cover"
+    position: "center"
+    opacity: "0.6"
   
   remedy:
     name: "No Water from Group"
@@ -22,16 +22,21 @@ scroll:
         if_yes:
           - text: "Check the screw and make sure that there are no coffee grounds blocking the holes."
             pause: true
+          - text: "🪶 Scroll complete. Vernon whispers through dry valves and silent jets."
+            pause: true
         if_no:
           - question: "Do you hear the solenoid plunger engage when you press the brew button?"
             if_yes:
               - text: "Then the group is blocked at the flow-meter or on some models at the metering jet."
                 pause: true
               - text: "Call your local espresso repair guy for assistance."
-              - text: "🪶 Scroll complete. When the group runs dry, this scroll whispers repair."
+                pause: true
+              - text: "🪶 Scroll complete. Vernon whispers through dry valves and silent jets."
                 pause: true
             if_no:
               - text: "Using a screwdriver or wrench, tap on the solenoid coil to loosen the plunger."
+                pause: true
+              - text: "🪶 Scroll complete. Vernon whispers through dry valves and silent jets."
                 pause: true
 
   vernonism: ""
@@ -41,4 +46,6 @@ scroll:
     - trigger: "Dry repair"
       response: "Caption held. Hydration denied."
       lineage: "Vernon → Espresso Pulse → Dust Scroll"
-
+    - trigger: "Scroll complete"
+      response: "Repair whispered. Dust settles. Vault closes."
+      lineage: "Vernon → Espresso Pulse → Completion Glyph"
