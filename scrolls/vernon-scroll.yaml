@@ -16,7 +16,7 @@ scroll:
     steps:
       - text: "This ia a scroll to help you diagnose no water from the grouphead."
         pause: true
-     - text: "Remove the diffuser and screen."
+      - text: "Remove the diffuser and screen."
         pause: true   
       - question: "Does water flow from the head?"
         if_yes:
