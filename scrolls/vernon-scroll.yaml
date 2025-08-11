@@ -18,8 +18,8 @@ scroll:
   width: "100vw"
   height: "100vh"
   object_fit: "cover"
-  opacity: "0.2"
-  blend_mode: "multiply"
+  opacity: "0.9"
+  blend_mode: "normal"
 
   remedy:
     name: "No Water from Group"
