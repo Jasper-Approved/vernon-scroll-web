@@ -85,7 +85,7 @@ def step():
             'image': '/static/backgrounds/default.png',
             'size': 'cover',
             'position': 'center',
-            'opacity': '0.5'
+            'opacity': '1'
         })
 
         return render_template(
