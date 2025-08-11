@@ -32,7 +32,7 @@ scroll:
               - text: "Using a screwdriver or wrench, tap on the solenoid coil to loosen the plunger."
                 pause: true
           - text: "🪶 Scroll complete. Vernon nods in dust."
-             pause: true
+            pause: true
      
 
   vernonism: ""
