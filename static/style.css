@@ -20,7 +20,7 @@ body.red-bg {
   pointer-events: none;
 }
 
-/* 🧿 Glyph Overlay — Unsealed Invocation */
+/* 🧿 Glyph Overlay — Unsealed Invocation 
 .glyph-overlay img {
   opacity: 0.3;
   mix-blend-mode: multiply;
@@ -31,7 +31,7 @@ body.red-bg {
   height: auto;
   z-index: 1;
   pointer-events: none;
-}
+} */
 
 /* 📜 Scroll Wrapper — Ambient Background Layer */
 #scroll-wrapper {
