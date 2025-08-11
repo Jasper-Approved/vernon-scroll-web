@@ -14,7 +14,7 @@ scroll:
     name: "No Water from Group"
     symptoms: []
     steps:
-      - text: "This ia a scroll to help you diagnose no water from the grouphead."
+      - text: "This is a scroll to help you diagnose no water from the grouphead."
         pause: true
       - text: "Remove the diffuser and screen."
         pause: true   
