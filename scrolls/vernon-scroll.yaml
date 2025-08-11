@@ -9,6 +9,15 @@ scroll:
   size: "cover"
   position: "center"
   opacity: "1"
+  
+  # Added glyph layer to scroll
+  glyph: "no_water_test_glyph.png"
+  glyph_style:
+  top: "15%"
+  left: "10%"
+  width: "600px"
+  opacity: "0.2"
+  blend_mode: "multiply"
 
   remedy:
     name: "No Water from Group"
