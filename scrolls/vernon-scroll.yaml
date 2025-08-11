@@ -4,7 +4,7 @@ scroll:
   drop_site:
     name: "diabolical-vault-deck"
 
-  background_style:  # ✅ Ambient layer now scroll-wide
+  background_style:
     image: "/static/backgrounds/no-water-glyph.png"
     size: "cover"
     position: "center"
@@ -17,7 +17,7 @@ scroll:
       - text: "This is a scroll to help you diagnose no water from the grouphead."
         pause: true
       - text: "Remove the diffuser and screen."
-        pause: true   
+        pause: true
       - question: "Does water flow from the head?"
         if_yes:
           - text: "Check the screw and make sure that there are no coffee grounds blocking the holes."
@@ -26,15 +26,17 @@ scroll:
             pause: true
         if_no:
           - question: "Do you hear the solenoid plunger engage when you press the brew button?"
+            pause: true
+          - question: "Is the plunger stuck?"
             if_yes:
-              - text: "Then the group is blocked at the flow-meter or on some models at the metering jet."
-                pause: true
-              - text: "Call your local espresso repair guy for assistance."
+              - text: "Using a screwdriver or wrench, tap on the solenoid coil to loosen the plunger."
                 pause: true
               - text: "🪶 Scroll complete. Vernon whispers through dry valves and silent jets."
                 pause: true
             if_no:
-              - text: "Using a screwdriver or wrench, tap on the solenoid coil to loosen the plunger."
+              - text: "Then the group is blocked at the flow-meter or on some models at the metering jet."
+                pause: true
+              - text: "Call your local espresso repair guy for assistance."
                 pause: true
               - text: "🪶 Scroll complete. Vernon whispers through dry valves and silent jets."
                 pause: true
