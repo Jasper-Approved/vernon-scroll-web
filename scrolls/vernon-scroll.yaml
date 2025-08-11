@@ -28,7 +28,7 @@ scroll:
               - text: "Then the group is blocked at the flow-meter or on some models at the metering jet."
                 pause: true
               - text: "Call your local espresso repair guy for assistance."
-              - text: "🪶 Scroll complete. Vernon nods in dust."
+              - text: "🪶 Scroll complete. When the group runs dry, this scroll whispers repair."
                 pause: true
             if_no:
               - text: "Using a screwdriver or wrench, tap on the solenoid coil to loosen the plunger."
