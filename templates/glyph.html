@@ -5,18 +5,13 @@
   <title>Scroll Interpretation</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   <style>
-    /* Optional inline fallback for background layering */
+    /* 🌫️ Background + Overlay Layering */
     #scroll-wrapper {
       position: relative;
       min-height: 100vh;
       overflow: hidden;
     }
-    .glyph-overlay img {
-      position: absolute;
-      top: 15%;
-      left: 10%;
-      z-index: 1;
-    }
+
     .fog-overlay {
       position: absolute;
       top: 0;
@@ -26,6 +21,7 @@
       z-index: 2;
       pointer-events: none;
     }
+
     .scroll-container {
       position: relative;
       z-index: 3;
@@ -33,7 +29,7 @@
   </style>
 </head>
 <body>
-  <!-- 🌫️ Background + Glyph Layering Wrapper -->
+  <!-- 🌫️ Background Wrapper -->
   <div id="scroll-wrapper"
        style="
          background-image: url('{{ background_style.image }}');
@@ -47,12 +43,23 @@
     <!-- 🌫️ Fog Overlay -->
     <div class="fog-overlay"></div>
 
-    <!-- 🧿 Glyph Overlay (if step.background is defined) -->
-    {% if step.background %}
-     <div class="glyph-overlay">
-      <img src="{{ url_for('static', filename='backgrounds/no_water_test_glyph.png') }}"
-       style="opacity: 0.2; mix-blend-mode: multiply;">
-     </div>
+    <!-- 🧿 Modular Glyph Overlay -->
+    {% if remedy.glyph %}
+    <div class="glyph-overlay">
+      <img src="{{ url_for('static', filename='backgrounds/' + remedy.glyph) }}"
+           style="
+             position: absolute;
+             top: {{ remedy.glyph_style.top | default('0') }};
+             left: {{ remedy.glyph_style.left | default('0') }};
+             width: {{ remedy.glyph_style.width | default('100vw') }};
+             height: {{ remedy.glyph_style.height | default('100vh') }};
+             object-fit: {{ remedy.glyph_style.object_fit | default('cover') }};
+             z-index: 1;
+             opacity: {{ remedy.glyph_style.opacity | default('0.2') }};
+             mix-blend-mode: {{ remedy.glyph_style.blend_mode | default('multiply') }};
+             pointer-events: none;
+           ">
+    </div>
     {% endif %}
 
     <!-- 📜 Scroll Content -->
@@ -85,4 +92,5 @@
   </div>
 </body>
 </html>
+
 
