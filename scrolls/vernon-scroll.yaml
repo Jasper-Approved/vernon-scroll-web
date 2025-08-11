@@ -19,7 +19,7 @@ scroll:
   height: "100vh"
   object_fit: "cover"
   opacity: "0.5"
-  blend_mode: "screen"
+  blend_mode: "multiply"
 
   remedy:
     name: "No Water from Group"
