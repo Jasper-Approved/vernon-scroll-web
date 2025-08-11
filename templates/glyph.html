@@ -33,8 +33,8 @@
            width: {{ remedy.glyph_style.width | default('100vw') }};
            height: {{ remedy.glyph_style.height | default('100vh') }};
            object-fit: {{ remedy.glyph_style.object_fit | default('cover') }};
-           opacity: {{ remedy.glyph_style.opacity | default('0.5') }};
-           mix-blend-mode: {{ remedy.glyph_style.blend_mode | default('overlay') }};
+           opacity: {{ remedy.glyph_style.opacity | default('1') }};
+           mix-blend-mode: {{ remedy.glyph_style.blend_mode | default('multiply') }};
            z-index: 1;
            pointer-events: none;
          ">
