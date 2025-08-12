@@ -1,7 +1,7 @@
 scroll:
   id: "vernon-no-water-test"
   title: "Vernon Repairs: No Water from Group"
-  drop_site: "diabolical-vault-deck"
+  drop_site: "https://vault-scroll-test.onrender.com"
 
   background_style:
     image: "/static/backgrounds/no-water-glyph.png"
