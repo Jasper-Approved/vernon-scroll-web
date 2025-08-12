@@ -18,15 +18,15 @@ body.red-bg {
 
 /* 🌫️ Fog Overlay — Whisper of the Blue Mist */
 .fog-overlay {
-  background-image: url('/static/blue_fog_espresso.png');
+  background-image: url('/static/backgrounds/blue_fog_espresso.png');
   background-size: cover;
-  background-position: bottom center;
+  background-position: 0% 80%; /* Move image to reveal more red */
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  opacity: 0.4;
+  opacity: 0.5;
   mix-blend-mode: multiply;
-  z-index: 2; /* Above background, below scroll */
+  z-index: -1; /* Above background, below scroll */
   pointer-events: none;
 }
 
