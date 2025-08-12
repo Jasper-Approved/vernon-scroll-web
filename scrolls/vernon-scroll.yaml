@@ -26,7 +26,7 @@ scroll:
         if_no:
           - question: "Do you hear the solenoid plunger engage when you press the brew button?"
             pause: true
-          - question: "Is the plunger stuck?"
+          - question: "Is the plunger stuck? Unsure select yes, for test"
             if_yes:
               - text: "Using a screwdriver or wrench, tap on the solenoid coil to loosen the plunger."
                 pause: true
